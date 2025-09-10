@@ -1,41 +1,20 @@
-import { Link, Stack } from 'expo-router';
-import { Image, Text, View, StyleSheet } from 'react-native';
-
-function LogoTitle() {
+import { Stack } from 'expo-router';
+export default function Layout() {
   return (
-    <Image style={styles.image} source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }} />
+    <Stack
+      screenOptions={{
+       // headerShown: false,
+        statusBarStyle: 'inverted',
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      {/* Optionally configure static options outside the route.*/}
+      <Stack.Screen name="home" options={{}} />
+    </Stack>
   );
 }
-
-export default function Home() {
-  return (
-    <View style={styles.container}>
-      <Stack.Screen
-        options={{
-          title: 'My home',
-          headerStyle: { backgroundColor: '#f4511e' },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-
-          headerTitle: props => <LogoTitle {...props} />,
-        }}
-      />
-      <Text>Home Screen</Text>
-      <Link href={{ pathname: 'details', params: { name: 'Bacon' } }}>Go to Details</Link>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    width: 50,
-    height: 50,
-  },
-});
